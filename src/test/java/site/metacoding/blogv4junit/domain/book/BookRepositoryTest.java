@@ -17,7 +17,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 public class BookRepositoryTest {
 
     @Autowired
-    private BookRespository bookRespository;
+    private BookRepository bookRespository;
 
     @Autowired
     private EntityManager em;
@@ -38,7 +38,7 @@ public class BookRepositoryTest {
         //given 
         String title = "스프링부트";
         String author = "황주원";
-        Book book = new Book(title, author);
+        Book book = Book.builder().title(title).author(author).build();
 
         //when
         Book bookEntity = bookRespository.save(book);
@@ -56,7 +56,7 @@ public class BookRepositoryTest {
         //given
         String title = "스프링부트";
         String author = "황주원";
-        Book book = new Book(title, author);
+        Book book = Book.builder().title(title).author(author).build();
         bookRespository.save(book);
 
         Long id = 1L; //long 타입은 뒤에 l을 붙인다 
